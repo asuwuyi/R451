@@ -14,15 +14,22 @@
             margin: 0;
             overflow: hidden;
         }
+        canvas {
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: -1; /* 讓 canvas 在底層 */
+    }
     </style>
 </head>
 <body>
+    <div>test</div>
     <script>
          let cnv;
         function setup() {
             cnv = createCanvas(1200, 10800);
             centerCanvas();
-            background(20);
+            background(210);
         }
 
         function draw() {
@@ -40,5 +47,6 @@
             centerCanvas();
         }
     </script>
+ 
 </body>
 </html>
