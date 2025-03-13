@@ -5,16 +5,38 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>p5.js Example</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.9.1/p5.min.js"></script>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            overflow: hidden;
+        }
+    </style>
 </head>
 <body>
     <script>
+        let cnv;
         function setup() {
-            createCanvas(400, 400);
+            cnv = createCanvas(1920, 1080);
+            centerCanvas();
         }
 
         function draw() {
             background(220);
             ellipse(200, 200, 50, 50);
+        }
+
+        function centerCanvas() {
+            let x = (windowWidth - width) / 2;
+            let y = (windowHeight - height) / 2;
+            cnv.position(x, y);
+        }
+
+        function windowResized() {
+            centerCanvas();
         }
     </script>
 </body>
