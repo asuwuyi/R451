@@ -18,15 +18,16 @@
 </head>
 <body>
     <script>
-        let cnv;
+         let cnv;
         function setup() {
-            cnv = createCanvas(1920, 1080);
+            cnv = createCanvas(1200, 10800);
             centerCanvas();
+            background(20);
         }
 
         function draw() {
-            background(220);
-            ellipse(200, 200, 50, 50);
+            ellipse(mouseX, mouseY, 100*noise(random(10)), 100*noise(random(10)));
+            
         }
 
         function centerCanvas() {
