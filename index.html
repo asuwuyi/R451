@@ -28,13 +28,13 @@
         function setup() {
             createCanvas(windowWidth, windowHeight);
             background(230); // 更柔和的背景色
-            noStroke(); // 移除描邊
+            // noStroke(); // 移除描邊
         }
 
         function draw() {
             let rand = random(10); // 儲存隨機值
-            fill(random(255),random(255),random(255),50);
-            ellipse(mouseX, mouseY, 100 * noise(rand), 100 * noise(rand));
+            // fill(random(255),random(255),random(255),50);
+            ellipse(mouseX, mouseY, 80 * noise(rand+10), 90 * noise(rand));
         }
 
         // 觸控事件處理
