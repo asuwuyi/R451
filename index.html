@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>p5.js Example</title>
+    <title>p5.js Example (Mobile Optimized)</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.9.1/p5.min.js"></script>
     <style>
         body {
@@ -15,38 +15,40 @@
             overflow: hidden;
         }
         canvas {
-        position: absolute;
-        top: 0;
-        left: 0;
-        z-index: -1; /* 讓 canvas 在底層 */
-    }
+            position: absolute;
+            top: 0;
+            left: 0;
+            z-index: -1;
+        }
     </style>
 </head>
 <body>
     <div>test</div>
     <script>
-         let cnv;
         function setup() {
-            cnv = createCanvas(1200, 10800);
-            centerCanvas();
-            background(210);
+            createCanvas(windowWidth, windowHeight);
+            background(230); // 更柔和的背景色
+            noStroke(); // 移除描邊
         }
 
         function draw() {
-            ellipse(mouseX, mouseY, 100*noise(random(10)), 100*noise(random(10)));
-            
+            let rand = random(10); // 儲存隨機值
+            fill(random(255),random(255),random(255),50);
+            ellipse(mouseX, mouseY, 100 * noise(rand), 100 * noise(rand));
         }
 
-        function centerCanvas() {
-            let x = (windowWidth - width) / 2;
-            let y = (windowHeight - height) / 2;
-            cnv.position(x, y);
+        // 觸控事件處理
+        function touchMoved() {
+            mouseX = touchX;
+            mouseY = touchY;
+            return false; // 防止瀏覽器預設的觸控行為
+        }
+        function touchStarted(){
+            mouseX = touchX;
+            mouseY = touchY;
+            return false;
         }
 
-        function windowResized() {
-            centerCanvas();
-        }
     </script>
- 
 </body>
 </html>
