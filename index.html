@@ -27,8 +27,6 @@
 <body>
     <div>test</div>
     <script>
-        let isDrawing = false; // 追蹤繪製狀態的變數
-
         function setup() {
             createCanvas(windowWidth, windowHeight);
             background(230);
@@ -36,25 +34,19 @@
         }
 
         function draw() {
-            if (isDrawing) { // 只有在 isDrawing 為 true 時才繪製
-                let rand = random(10);
-                ellipse(mouseX, mouseY, 80 * noise(rand + 10), 90 * noise(rand));
-            }
+            let rand = random(10);
+            ellipse(mouseX, mouseY, 80 * noise(rand + 10), 90 * noise(rand));
         }
 
         // 觸控事件處理
-        function touchStarted() {
-            isDrawing = !isDrawing; // 切換繪製狀態
+        function touchMoved() {
             mouseX = touchX;
             mouseY = touchY;
             return false;
         }
-
-        function touchMoved() {
-            if (isDrawing){
-                mouseX = touchX;
-                mouseY = touchY;
-            }
+        function touchStarted(){
+            mouseX = touchX;
+            mouseY = touchY;
             return false;
         }
     </script>
