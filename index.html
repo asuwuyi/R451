@@ -14,36 +14,30 @@
             margin: 0;
             overflow: hidden;
         }
-        canvas {
-            position: absolute;
-            top: 0;
-            left: 0;
-            z-index: 0; /* 確保畫布不會被擋住 */
-        }
     </style>
 </head>
 <body>
-    <div>test</div>
     <script>
+         let cnv;
         function setup() {
-            createCanvas(windowWidth, windowHeight); // 讓 canvas 自適應手機大小
-            background(210); // 背景只設定一次，這樣畫面不會被清掉
+            cnv = createCanvas(1200, 10800);
+            centerCanvas();
+            background(20);
         }
 
         function draw() {
-            // 檢查是否有觸控點（手機）或滑鼠按住（電腦）
-            if (mouseIsPressed || touches.length > 0) {
-                let x = mouseIsPressed ? mouseX : touches[0].x;
-                let y = mouseIsPressed ? mouseY : touches[0].y;
+            ellipse(mouseX, mouseY, 100*noise(random(10)), 100*noise(random(10)));
+            
+        }
 
-                fill(100, 150, 255, 200); // 設定顏色
-                noStroke(); // 取消邊框
-                ellipse(x, y, 50, 50);  // 畫圓
-            }
+        function centerCanvas() {
+            let x = (windowWidth - width) / 2;
+            let y = (windowHeight - height) / 2;
+            cnv.position(x, y);
         }
 
         function windowResized() {
-            resizeCanvas(windowWidth, windowHeight); // 自動調整畫布大小
+            centerCanvas();
         }
     </script>
 </body>
