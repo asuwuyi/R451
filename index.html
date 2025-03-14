@@ -18,27 +18,28 @@
             position: absolute;
             top: 0;
             left: 0;
-            z-index: 0; /* 確保不會被擋住 */
+            z-index: 0; /* 確保畫布不會被擋住 */
         }
     </style>
 </head>
 <body>
     <div>test</div>
     <script>
-        let cnv;
         function setup() {
-            cnv = createCanvas(windowWidth, windowHeight); // 讓 canvas 自適應手機大小
-            background(210);
+            createCanvas(windowWidth, windowHeight); // 讓 canvas 自適應手機大小
+            background(210); // 背景只設定一次，這樣畫面不會被清掉
         }
 
         function draw() {
-            background(210); // 清除背景，防止畫面殘留
+            // 檢查是否有觸控點（手機）或滑鼠按住（電腦）
+            if (mouseIsPressed || touches.length > 0) {
+                let x = mouseIsPressed ? mouseX : touches[0].x;
+                let y = mouseIsPressed ? mouseY : touches[0].y;
 
-            let x = mouseIsPressed ? mouseX : (touches.length > 0 ? touches[0].x : width / 2);
-            let y = mouseIsPressed ? mouseY : (touches.length > 0 ? touches[0].y : height / 2);
-
-            fill(100, 150, 255, 200); // 設定顏色
-            ellipse(x, y, 100, 100);  // 畫圓
+                fill(100, 150, 255, 200); // 設定顏色
+                noStroke(); // 取消邊框
+                ellipse(x, y, 50, 50);  // 畫圓
+            }
         }
 
         function windowResized() {
