@@ -39,24 +39,39 @@
 <body>
     <div class="titleUP">這是我的P5JS測試區塊</div>
     <script>
+        let gif;
+
+        function preload() {
+            gif = loadImage('0808.gif'); // 確保這個檔案與 HTML 在同一資料夾
+        }
+
         function setup() {
             createCanvas(windowWidth, windowHeight);
             background(230);
             frameRate(20);
+            noCursor(); // 隱藏系統游標，讓 GIF 當筆刷看起來更自然
         }
 
         function draw() {
-            let rand = random(10);
-            ellipse(mouseX, mouseY, 80 * noise(rand + 10), 90 * noise(rand));
-        }
+        
+    // 每一幀隨機產生寬高（在 60~120 範圍內）
+    let w = random(60, 120);
+    let h = w; // 如果你想保持寬高一致
 
-        // 觸控事件處理
+    // 讓圖形以滑鼠為中心顯示
+    image(gif, mouseX - w / 2, mouseY - h / 2, w, h);
+
+
+}
+
+        // 支援手機觸控：讓 touch 當成滑鼠
         function touchMoved() {
             mouseX = touchX;
             mouseY = touchY;
             return false;
         }
-        function touchStarted(){
+
+        function touchStarted() {
             mouseX = touchX;
             mouseY = touchY;
             return false;
